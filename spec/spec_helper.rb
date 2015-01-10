@@ -4,6 +4,14 @@
 # loaded once.
 #
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
+$LOAD_PATH.unshift Pathname.new(__FILE__).parent.parent
+ENV['TEST'] = '1'
+
+require 'pry'
+
+# require all support files
+Dir['./spec/support/**/*.rb'].sort.each { |f| require f}
+
 RSpec.configure do |config|
   config.treat_symbols_as_metadata_keys_with_true_values = true
   config.run_all_when_everything_filtered = true
