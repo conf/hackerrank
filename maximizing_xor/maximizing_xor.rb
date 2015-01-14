@@ -14,12 +14,15 @@ class MaximizingXor
     @low, @high = 2.times.map { gets.to_i }
   end
 
+  # @low ^ @high finds most significant bit, that is different between @low and @high
+  # For example, for @low = 15 and @high = 15 it would be:  1010 ^ 1111 = 0101 (5 in decimal)
+  # we're interested in this bit ------------------------------------------^
+  # after that turn all lower bits into 1, so the answer is 0111.
+  # It can be easily done by finding next value of (power of 2) - 1
+  # that is bigger than our most significant bit.
   def maximized_xor
-    (@low...@high).map do |i|
-      (i.next..@high).map do |j|
-        i ^ j
-      end
-    end.flatten.max
+    most_significant_bit = @low ^ @high
+    (1..10).map { |i| 2 ** i }.detect { |i| i > most_significant_bit }.pred
   end
 
   def solve
