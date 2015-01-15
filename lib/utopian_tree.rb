@@ -1,32 +1,34 @@
 require 'forwardable'
-class UtopianTree
-  extend Forwardable
+module Hackerrank
+  class UtopianTree
+    extend Forwardable
 
-  delegate gets: :input, puts: :output
-  attr_reader :input, :output
+    delegate gets: :input, puts: :output
+    attr_reader :input, :output
 
-  def initialize(input = STDIN, output = STDOUT)
-    @input = input
-    @output = output
-  end
+    def initialize(input = STDIN, output = STDOUT)
+      @input = input
+      @output = output
+    end
 
-  def main
-    read
-    puts solve
-  end
+    def main
+      read
+      puts solve
+    end
 
-  def read
-    @test_cases = gets.to_i
-    @arr = @test_cases.times.map { gets.to_i }
-  end
+    def read
+      @test_cases = gets.to_i
+      @arr = @test_cases.times.map { gets.to_i }
+    end
 
-  def height(cycles)
-    (1..cycles).inject(1) { |total, cycle| cycle.odd? ? total * 2 : total + 1 }
-  end
+    def height(cycles)
+      (1..cycles).inject(1) { |total, cycle| cycle.odd? ? total * 2 : total + 1 }
+    end
 
-  def solve
-    @arr.map { |cycles| height(cycles) }
+    def solve
+      @arr.map { |cycles| height(cycles) }
+    end
   end
 end
 
-UtopianTree.new.main unless ENV['TEST']
+Hackerrank.const_get(Hackerrank.constants.last).new.main unless ENV['TEST']

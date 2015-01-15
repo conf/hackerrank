@@ -1,7 +1,8 @@
-RSpec.shared_examples 'from_fixtures' do
+RSpec.shared_examples 'fixture' do
   class << self
     def class_name_to_underscore(name)
-      name.to_s.gsub(/([a-z])([A-Z])/) { $1 + '_' + $2.downcase }.downcase
+      demodulized_name = name.split('::').last
+      demodulized_name.to_s.gsub(/([a-z])([A-Z])/) { $1 + '_' + $2.downcase }.downcase
     end
 
     def fixture_list(class_name)
