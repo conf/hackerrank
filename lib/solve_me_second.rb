@@ -1,6 +1,6 @@
 require 'forwardable'
 module Hackerrank
-  class SolveMeSecond
+  class Template
     extend Forwardable
 
     delegate gets: :input, puts: :output
@@ -16,6 +16,14 @@ module Hackerrank
       puts solve
     end
 
+    def read
+    end
+
+    def solve
+    end
+  end
+
+  class SolveMeSecond < Template
     def read
       @test_cases = gets.to_i
       @arr = @test_cases.times.map { gets.split(' ').map(&:to_i) }

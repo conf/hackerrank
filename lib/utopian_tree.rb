@@ -1,6 +1,6 @@
 require 'forwardable'
 module Hackerrank
-  class UtopianTree
+  class Template
     extend Forwardable
 
     delegate gets: :input, puts: :output
@@ -17,16 +17,24 @@ module Hackerrank
     end
 
     def read
+    end
+
+    def solve
+    end
+  end
+
+  class UtopianTree < Template
+    def read
       @test_cases = gets.to_i
       @arr = @test_cases.times.map { gets.to_i }
     end
 
-    def height(cycles)
-      (1..cycles).inject(1) { |total, cycle| cycle.odd? ? total * 2 : total + 1 }
-    end
-
     def solve
       @arr.map { |cycles| height(cycles) }
+    end
+
+    def height(cycles)
+      (1..cycles).inject(1) { |total, cycle| cycle.odd? ? total * 2 : total + 1 }
     end
   end
 end

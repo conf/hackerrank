@@ -1,6 +1,6 @@
 require 'forwardable'
 module Hackerrank
-  class MaximizingXor
+  class Template
     extend Forwardable
 
     delegate gets: :input, puts: :output
@@ -16,6 +16,14 @@ module Hackerrank
       puts solve
     end
 
+    def read
+    end
+
+    def solve
+    end
+  end
+
+  class MaximizingXor < Template
     def read
       @low, @high = 2.times.map { gets.to_i }
     end
