@@ -10,6 +10,11 @@ class UtopianTree
     @output = output
   end
 
+  def main
+    read
+    puts solve
+  end
+
   def read
     @test_cases = gets.to_i
     @arr = @test_cases.times.map { gets.to_i }
@@ -20,9 +25,8 @@ class UtopianTree
   end
 
   def solve
-    read
-    puts @arr.map { |cycles| height(cycles) }
+    @arr.map { |cycles| height(cycles) }
   end
 end
 
-UtopianTree.new.solve unless ENV['TEST']
+UtopianTree.new.main unless ENV['TEST']

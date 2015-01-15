@@ -24,7 +24,7 @@ RSpec.shared_examples 'from_fixtures' do
       input, output = read_fixture(fixture)
 
       sut = described_class.new(StringIO.new(input), StringIO.new)
-      sut.solve
+      sut.main
 
       sut.output.rewind
       result = sut.output.read

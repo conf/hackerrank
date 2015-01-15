@@ -10,6 +10,11 @@ class MaximizingXor
     @output = output
   end
 
+  def main
+    read
+    puts solve
+  end
+
   def read
     @low, @high = 2.times.map { gets.to_i }
   end
@@ -20,15 +25,10 @@ class MaximizingXor
   # after that turn all lower bits into 1, so the answer is 0111.
   # It can be easily done by finding next value of (power of 2) - 1
   # that is bigger than our most significant bit.
-  def maximized_xor
+  def solve
     most_significant_bit = @low ^ @high
     (1..10).map { |i| 2 ** i }.detect { |i| i > most_significant_bit }.pred
   end
-
-  def solve
-    read
-    puts maximized_xor
-  end
 end
 
-MaximizingXor.new.solve unless ENV['TEST']
+MaximizingXor.new.main unless ENV['TEST']
